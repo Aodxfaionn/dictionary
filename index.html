@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>Your dictionary</title>
+</head>
+
+<body>
+  <main>
+    <section class="mainScreen">
+      <h1 class="mainScreen__title">Мой словарь</h1>
+      <p class="mainScreen__text">Учить английский легко!</p>
+      <div class="mainScreen__btn">
+        <a href="#words" class="btn">Добавить слово</a>
+        <a href="#list" class="btn">Посмотреть словарь</a>
+      </div>
+    </section>
+    <section id="words" class="container">
+      <h2 class="title">Введите новое слово</h2>
+      <div class="words">
+        <div class="field">
+          <p class="field__name">Слово</p>
+          <input type="text" id="rus" class="field__input" />
+        </div>
+        <div class="field">
+          <p class="field__name">Перевод</p>
+          <input type="text" id="eng" class="field__input" />
+        </div>
+        <div class="words__warning">Заполните все поля. Не используйте цифры.</div>
+        <button id="saveWord" class="btn">Добавить слово</button>
+      </div>
+    </section>
+    <section id="list" class="container list">
+      <h2 class="title">Сохраненные слова</h2>
+      <div id="listWords" class="words"></div>
+    </section>
+  </main>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
