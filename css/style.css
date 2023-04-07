@@ -75,24 +75,6 @@ a {
   flex-wrap: wrap;
   flex-direction: column;
 }
-.mainScreen__title {
-  background: rgba(222, 209, 215, 0.8);
-  padding: 10px 41px;
-  font-size: 3.5em;
-  color: #4c648a;
-  text-shadow: 1px 1px 1px #4c648a;
-  letter-spacing: 1px;
-  border: 3px solid #fff;
-  border-bottom: 0;
-}
-.mainScreen__text {
-  background: rgba(222, 209, 215, 0.8);
-  padding: 0 60px 10px;
-  font-size: 1.8em;
-  color: #4c648a;
-  border: 3px solid #fff;
-  border-top: 0;
-}
 .mainScreen__btn {
   display: flex;
   align-items: center;
@@ -102,15 +84,32 @@ a {
   margin-top: 20px;
 }
 
+.mainText {
+  background: rgba(222, 209, 215, 0.8);
+  color: #4c648a;
+  border: 3px solid #fff;
+  text-align: center;
+  padding: 30px 55px;
+}
+.mainText__title {
+  font-size: 3.5em;
+  color: #4c648a;
+  text-shadow: 1px 1px 1px #4c648a;
+  letter-spacing: 1px;
+}
+.mainText__text {
+  font-size: 1.8em;
+}
+
 .container {
+  display: none;
   background-color: #ded1d7;
-  min-height: 300px;
   padding: 50px 0;
 }
 
 .words {
-  width: 60%;
-  margin: 30px auto;
+  width: 65%;
+  margin: 30px auto 0;
 }
 .words__warning {
   display: none;
@@ -128,14 +127,14 @@ a {
   margin-bottom: 30px;
 }
 .field__name {
-  width: 10%;
+  width: 20%;
 }
 .field__input {
   height: 35px;
   border: 0;
   border-bottom: 1px solid #342424;
   background-color: #ded1d7;
-  width: 85%;
+  width: 75%;
 }
 
 .list {
@@ -155,8 +154,14 @@ a {
 .listWords__line:hover {
   background-color: #f6e8ee;
 }
-.listWords__line-first {
-  flex-basis: 45%;
+.listWords__line:first-of-type {
+  font-size: 1.2em;
+  background-color: #989194;
+  cursor: auto;
+}
+
+.listWords__block {
+  flex-basis: 30%;
   min-height: 50px;
   display: flex;
   align-items: center;
@@ -164,22 +169,8 @@ a {
   flex-wrap: wrap;
   border-right: 1px solid #fff;
 }
-.listWords__line-second {
-  flex-basis: 45%;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  border-right: 1px solid #fff;
-}
-.listWords__line-third {
+.listWords__block-delete {
   flex-basis: 10%;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .btnDelete {
@@ -195,5 +186,9 @@ a {
 }
 
 .open {
-  display: flex;
+  display: block;
+}
+
+.color {
+  border-bottom: 1px solid red;
 }/*# sourceMappingURL=style.css.map */

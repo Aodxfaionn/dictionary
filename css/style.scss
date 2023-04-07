@@ -90,24 +90,6 @@ a {
   background-repeat: no-repeat;
   @include flex;
   flex-direction: column;
-  &__title {
-    background: rgb(222, 209, 215, 0.8);
-    padding: 10px 41px;
-    font-size: 3.5em;
-    color: #4c648a;
-    text-shadow: 1px 1px 1px #4c648a;
-    letter-spacing: 1px;
-    border: 3px solid #fff;
-    border-bottom: 0;
-  }
-  &__text {
-    background: rgb(222, 209, 215, 0.8);
-    padding: 0 60px 10px;
-    font-size: 1.8em;
-    color: #4c648a;
-    border: 3px solid #fff;
-    border-top: 0;
-  }
   &__btn {
     @include flex;
     gap: 20px;
@@ -115,15 +97,32 @@ a {
   }
 }
 
+.mainText {
+  background: rgb(222, 209, 215, 0.8);
+  color: #4c648a;
+  border: 3px solid #fff;
+  text-align: center;
+  padding: 30px 55px;
+  &__title {
+    font-size: 3.5em;
+    color: #4c648a;
+    text-shadow: 1px 1px 1px #4c648a;
+    letter-spacing: 1px;
+  }
+  &__text {
+    font-size: 1.8em;
+  }
+}
+
 .container {
+  display: none;
   background-color: #ded1d7;
-  min-height: 300px;
   padding: 50px 0;
 }
 
 .words {
-  width: 60%;
-  margin: 30px auto;
+  width: 65%;
+  margin: 30px auto 0;
   &__warning {
     display: none;
     margin-bottom: 30px;
@@ -137,14 +136,14 @@ a {
   gap: 30px;
   margin-bottom: 30px;
   &__name {
-    width: 10%;
+    width: 20%;
   }
   &__input {
     height: 35px;
     border: 0;
     border-bottom: 1px solid #342424;
     background-color: #ded1d7;
-    width: 85%;
+    width: 75%;
   }
 }
 
@@ -161,24 +160,20 @@ a {
   &:hover {
     background-color: #f6e8ee;
   }
-  &-first {
-    flex-basis: 45%;
-    min-height: 50px;
-    @include flex;
-    border-right: 1px solid #fff;
+  &:first-of-type {
+    font-size: 1.2em;
+    background-color: #989194;
+    cursor: auto;
   }
-  &-second {
-    flex-basis: 45%;
-    min-height: 50px;
-    @include flex;
-    border-right: 1px solid #fff;
-    // background-color: #58548c;
-    // color: #fff;
-  }
-  &-third {
+}
+
+.listWords__block {
+  flex-basis: 30%;
+  min-height: 50px;
+  @include flex;
+  border-right: 1px solid #fff;
+  &-delete {
     flex-basis: 10%;
-    min-height: 50px;
-    @include flex;
   }
 }
 
@@ -195,5 +190,9 @@ a {
 }
 
 .open {
-  display: flex;
+  display: block;
+}
+
+.color {
+  border-bottom: 1px solid red;
 }

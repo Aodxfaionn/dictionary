@@ -12,11 +12,13 @@
 <body>
   <main>
     <section class="mainScreen">
-      <h1 class="mainScreen__title">Мой словарь</h1>
-      <p class="mainScreen__text">Учить английский легко!</p>
+      <div class="mainText">
+        <h1 class="mainText__title">Мой словарь</h1>
+        <p class="mainText__text">Учить английский легко!</p>
+      </div>
       <div class="mainScreen__btn">
-        <a href="#words" class="btn">Добавить слово</a>
-        <a href="#list" class="btn">Посмотреть словарь</a>
+        <a href="#words" class="btn js-show">Добавить слово</a>
+        <a href="#list" class="btn js-show">Посмотреть словарь</a>
       </div>
     </section>
     <section id="words" class="container">
@@ -24,19 +26,30 @@
       <div class="words">
         <div class="field">
           <p class="field__name">Слово</p>
-          <input type="text" id="rus" class="field__input" />
+          <input type="text" id="rus" class="field__input necessarily" />
         </div>
         <div class="field">
           <p class="field__name">Перевод</p>
-          <input type="text" id="eng" class="field__input" />
+          <input type="text" id="eng" class="field__input necessarily" />
         </div>
-        <div class="words__warning">Заполните все поля. Не используйте цифры.</div>
+        <div class="field">
+          <p class="field__name">Произношение</p>
+          <input type="text" id="voice" class="field__input" />
+        </div>
+        <div class="words__warning">Заполните поля. Не используйте цифры.</div>
         <button id="saveWord" class="btn">Добавить слово</button>
       </div>
     </section>
     <section id="list" class="container list">
       <h2 class="title">Сохраненные слова</h2>
-      <div id="listWords" class="words"></div>
+      <div id="listWords" class="words">
+        <div class="listWords__line">
+          <div class="listWords__block">Слово</div>
+          <div class="listWords__block">Перевод</div>
+          <div class="listWords__block">Произношение</div>
+          <div class="listWords__block listWords__block-delete"></div>
+        </div>
+      </div>
     </section>
   </main>
   <script src="/js/script.js"></script>
