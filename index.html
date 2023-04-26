@@ -17,8 +17,8 @@
         <p class="mainText__text">Учить английский легко!</p>
       </div>
       <div class="mainScreen__btn">
-        <a href="#words" class="btn js-show">Добавить слово</a>
-        <a href="#list" class="btn js-show">Посмотреть словарь</a>
+        <a href="#words" class="btn js-show">Словарь</a>
+        <a href="#about" class="btn js-show">О словаре</a>
       </div>
     </section>
     <section id="words" class="container">
@@ -40,17 +40,74 @@
         <button id="saveWord" class="btn">Добавить слово</button>
       </div>
     </section>
-    <section id="list" class="container list">
+    <section class="container list">
       <h2 class="title">Сохраненные слова</h2>
-      <div id="listWords" class="words">
-        <div class="listWords__line">
-          <div class="listWords__block">Слово</div>
-          <div class="listWords__block">Перевод</div>
-          <div class="listWords__block">Произношение</div>
-          <div class="listWords__block listWords__block-delete"></div>
-        </div>
+      <table id="listWords" class="words words__table">
+        <thead>
+          <tr>
+            <td>Слово</td>
+            <td>Перевод</td>
+            <td>Произношение</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+    <section class="container" id="about">
+      <h2 class="title">О словаре</h2>
+      <div class="accordion">
+        <details>
+          <summary>Как правильно вести словарь?</summary>
+          <div class="accordion__text">
+            Не рассматривайте и не выписывайте слова отдельно от контекста, всегда смотрите шире и обращайте внимание на
+            комбинации из нескольких слов – словосочетания (collocations).
+            Изучение языка не отдельными словами, а устойчивыми словосочетаниями позволяет улучшить восприятие речи на
+            слух, английское произношение и правописание.
+            <p>Старайтесь работать со словосочетаниями следующим образом:</p>
+            <p>1. Всегда обращайте внимание на то, в составе
+              какого выражения употреблено слово, как это слово влияет на общий контекст предложения. Выписывайте не
+              конкретные слова, а связки, в которых они находятся. </p>
+            <p>2. Придумывайте и записывайте предложения с теми
+              словосочетаниями, которые вы выписали. Сочиняйте примеры из собственной жизни, ищите «вдохновение» везде,
+              где
+              только можно: на улице, в метро, на работе или в кинотеатре.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Как составить свой словарик?</summary>
+          <div class="accordion__text">Просто введите слово, перевод и его произношение!</div>
+        </details>
+        <details>
+          <summary>Сколько слов может быть в словарике?</summary>
+          <div class="accordion__text">Сколько вы считаете нужным. Специалисты рекомендуют заучитвать новые словами
+            группами по 5-10 слов, однако
+            для повторения вы можете вводить большее количество.</div>
+        </details>
       </div>
     </section>
+    <div id="question" class="question">
+      Изучаешь английский?
+      <span class="closeNotify close">&times;</span>
+    </div>
+    <div id="popup" class="popup">
+      <div class="popup__content">
+        <h3 class="title">Подпишись на рассылку и получай 10 новых слов для изучения!</h3>
+        <span class="close">&times;</span>
+        <form action="" class="form">
+          <input type="text" name="" id="name" class="field__input" placeholder="Укажите Ваше имя" required>
+          <input type="email" id="email" placeholder="Укажите Ваш e-mail" class="field__input" required>
+          <label for="time">Частота рассылки</label>
+          <select name="time" id="time">
+            <option value="1">1 раз в неделю</option>
+            <option value="3">3 раза в неделю</option>
+            <option value="7">Каждый день</option>
+          </select>
+          <input type="submit" value="Готово" class="btn js-form-send">
+          <div id="info" class="popup__info"></div>
+        </form>
+      </div>
+    </div>
   </main>
   <script src="/js/script.js"></script>
 </body>

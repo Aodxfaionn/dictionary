@@ -5,13 +5,14 @@ const btnShow = document.querySelectorAll(".js-show"),
   voiceWord = document.querySelector("#voice"),
   saveWord = document.querySelector("#saveWord"),
   listWords = document.querySelector("#listWords"),
+  table = document.querySelector("tbody"),
   necessarilyInput = document.querySelectorAll(".necessarily"),
   warning = document.querySelector(".words__warning"),
   list = document.querySelector("#list");
 
 let words, btnDelete;
 
-// По клику на кнопки появляется словарик и поле ввода новых слов
+// По клику на кнопки появляется словарик и аккордеон
 for (show of btnShow) {
   show.addEventListener("click", () => {
     containers.forEach((container) => container.classList.add("open"));
@@ -27,22 +28,22 @@ localStorage.length < 1
 // Сохраненных сейчас
 const addWordInList = (index) => {
   if (words[index].voice == null) {
-    listWords.innerHTML += `
-    <div class="listWords__line">
-        <div class="listWords__block">${words[index].russian}</div>
-        <div class="listWords__block">${words[index].english}</div>
-        <div class="listWords__block"></div>
-        <div class="listWords__block listWords__block-delete"><button class="btnDelete">&#10006</button></div>
-    </div>
+    table.innerHTML += `
+    <tr>
+        <td>${words[index].russian}</td>
+        <td>${words[index].english}</td>
+        <td></td>
+        <td class="listWords__block-delete"><button class="btnDelete">&#10006</button></td>
+    </tr>
     `;
   } else {
-  listWords.innerHTML += `
-    <div class="listWords__line">
-        <div class="listWords__block">${words[index].russian}</div>
-        <div class="listWords__block">${words[index].english}</div>
-        <div class="listWords__block">${words[index].voice}</div>
-        <div class="listWords__block listWords__block-delete"><button class="btnDelete">&#10006</button></div>
-    </div>
+    table.innerHTML += `
+    <tr>
+        <td>${words[index].russian}</td>
+        <td>${words[index].english}</td>
+        <td>${words[index].voice}</td>
+        <td class="listWords__block-delete"><button class="btnDelete">&#10006</button></td>
+    </tr>
     `;
   }
 };
@@ -67,26 +68,27 @@ saveWord.addEventListener("click", function () {
   ) {
     for (inp of necessarilyInput) {
       warning.classList.add("open");
-      inp.classList.add('color');
+      inp.classList.add("color");
     }
   } else {
     for (inp of necessarilyInput) {
       warning.classList.remove("open");
-      inp.classList.remove('color');
+      inp.classList.remove("color");
+    }
       words.push(new CreateWord(rusWord.value, engWord.value, voice.value));
       localStorage.setItem("words", JSON.stringify(words));
       addWordInList(words.length - 1);
       rusWord.value = null;
       engWord.value = null;
       voice.value = null;
-    }
   }
 });
 
 // Удаление из словаря
 const deleteWord = (e) => {
-  e.target.closest('.listWords__line').remove();
-  // words.splice(rowIndex, 1);
+  const rowIndex = e.target.closest("tr").rowIndex;
+  e.target.closest("tr").remove();
+  words.splice(rowIndex, 1);
   localStorage.removeItem("words");
   localStorage.setItem("words", JSON.stringify(words));
 };
@@ -103,3 +105,54 @@ const addEventDelete = () => {
 };
 
 addEventDelete();
+
+// Аккордеон
+function onToggle(event) {
+  if (event.target.open) {
+    document.querySelectorAll(".accordion > details[open]").forEach((elem) => {
+      if (elem === event.target) {
+        return;
+      }
+      elem.open = false;
+    });
+  }
+}
+
+document
+  .querySelectorAll(".accordion > details")
+  .forEach((el) => el.addEventListener("toggle", onToggle));
+
+// Попап
+const question = document.querySelector("#question"),
+  popup = document.querySelector("#popup");
+
+window.addEventListener("click", function(e) {
+  if (e.target == question) {
+  popup.classList.add("open");
+  }
+  if (e.target.closest('.closeNotify')) {
+    question.classList.add("hidden");
+  }
+});
+popup.addEventListener("click", function (e) {
+  e.preventDefault();
+  let info = popup.querySelector("#info"),
+    email = popup.querySelector("#email").value;
+  if (e.target == popup || e.target.closest(".close")) {
+    popup.classList.remove("open");
+  }
+  if (e.target.closest(".js-form-send") && email != "") {
+    info.classList.add('visibly');
+    info.textContent = "Вы подписаны на рассылку.";
+  }
+  if (e.target.closest(".js-form-send") && email == "") {
+    info.classList.add('visibly');
+    info.textContent = "Поле e-mail не заполнено или заполнено некорректно.";
+  }
+});
+
+window.addEventListener("keydown", function (e) {
+  if (e.keyCode === 27) {
+    popup.classList.remove("open");
+  }
+});

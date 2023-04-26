@@ -51,6 +51,15 @@ a {
   text-decoration: none;
 }
 
+a:active,
+a:hover,
+a:focus {
+    outline: 0;
+    outline-offset: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 .btn {
   cursor: pointer;
   width: 240px;
@@ -118,6 +127,7 @@ a {
   display: none;
   background-color: #ded1d7;
   padding: 50px 0;
+  width: 100vw;
 }
 
 .words {
@@ -151,29 +161,25 @@ a {
   background-color: #ada1ac;
 }
 
-.listWords__line {
-  @include flex;
-  background-color: #ded1d7;
-  min-height: 50px;
-  border-bottom: 1px solid #fff;
-  cursor: pointer;
-  &:hover {
-    background-color: #f6e8ee;
-  }
-  &:first-of-type {
+.words__table {
+  border-collapse: collapse;
+  & thead {
     font-size: 1.2em;
-    background-color: #989194;
-    cursor: auto;
+    text-align: center;
+    background-color: #ded1d7;
   }
-}
-
-.listWords__block {
-  flex-basis: 30%;
-  min-height: 50px;
-  @include flex;
-  border-right: 1px solid #fff;
-  &-delete {
-    flex-basis: 10%;
+  & tr {
+    background-color: #ded1d7;
+    & :last-child {
+      text-align: center;
+    }
+  }
+  & td {
+    border: 1px solid #fff;
+    padding: 10px 15px;
+  }
+  & tbody tr:hover {
+    background-color: #f6e8ee;
   }
 }
 
@@ -195,4 +201,149 @@ a {
 
 .color {
   border-bottom: 1px solid red;
+}
+
+.popup {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  &__content {
+    background-color: #ded1d7;
+    padding: 20px;
+    width: 50%;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    & h3 {
+      font-size: 1.5em;
+      margin-top: 15px;
+    }
+  }
+  &__info.visibly {
+    border: 3px solid #fff;
+    padding: 10px 20px;
+    color: #58548c;
+  }
+}
+
+.popup.open {
+  display: flex;
+}
+
+.close {
+  color: #aaa;
+  font-size: 45px;
+  position: absolute;
+  right: 20px;
+  top: 0px;
+  transition: 0.8s all ease;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    color: #fff;
+  }
+}
+
+.form {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form input {
+  width: 100%;
+}
+
+.form select {
+  height: 35px;
+}
+
+.question {
+  width: 200px;
+  height: 70px;
+  background-color: #4c648a;
+  color: #fff;
+  border-radius: 5px 5px;
+  padding: 15px 30px;
+  margin: 10px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 1px 1px 5px #000;
+  animation: appearance ease 2s;
+  opacity: 1;
+  transition: opacity 1s, visibility 0s;
+  &::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #4c648a;
+    left: -8px;
+    top: 45px;
+  }
+  &:hover {
+    box-shadow: 1px 1px 3px #fff;
+  }
+  & .close {
+    color: #fff;
+    font-size: 35px;
+    right: 5px;
+    top: 0;
+  }
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s, visibility 0s 1s;
+  }
+}
+
+@keyframes appearance {
+  0% {
+    transform: translateX(-250px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.accordion {
+  margin: 30px auto;
+  width: 65%;
+  &__text {
+    border: 1px #ada1ac solid;
+    padding: 20px;
+    & p {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+::marker {
+  color: #4c648a;
+}
+
+details {
+  margin-bottom: 30px;
+}
+
+summary {
+  background-color: #ada1ac;
+  padding: 10px;
+  cursor: pointer;
 }
