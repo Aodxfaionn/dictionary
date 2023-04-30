@@ -1,4 +1,4 @@
-<img src="https://ibb.co/0nKcqQ5" alt="Демо проекта">
+<img src="https://i.postimg.cc/Jsh5Y5SG/image.jpg" alt="Демо проекта">
 <p>Мой словарь</p>
 <p>Ссылка на проект: https://aodxfaionn.github.io/dictionary/ </p>
 <p>Функционал: добавление слов с переводом и произношением в личный словарь для удобного изучения языка.</p>
