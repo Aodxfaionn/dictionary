@@ -32,9 +32,9 @@ a {
   text-decoration: none;
 }
 
-a:active,
-a:hover,
-a:focus {
+:active,
+:hover,
+:focus {
   outline: 0;
   outline-offset: 0;
   box-shadow: none;
@@ -144,6 +144,7 @@ a:focus {
   border-bottom: 1px solid #342424;
   background-color: #ded1d7;
   width: 75%;
+  transition: 0.3s all ease;
 }
 
 .list {
@@ -334,4 +335,31 @@ summary {
   background-color: #ada1ac;
   padding: 10px;
   cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .field__input {
+    width: 100%;
+  }
+  .field__name {
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (max-width: 750px) {
+  .words,
+  .accordion {
+    width: 75%;
+  }
+}
+@media (max-width: 500px) {
+  .words,
+  .accordion {
+    width: 90%;
+  }
+  .words__table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }/*# sourceMappingURL=style.css.map */

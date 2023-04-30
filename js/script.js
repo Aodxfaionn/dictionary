@@ -19,7 +19,7 @@ for (show of btnShow) {
   });
 }
 
-// Отрисовка слов в словаре слов
+// Отрисовка слов в словаре
 // Сохраненных ранее
 localStorage.length < 1
   ? (words = [])
@@ -52,6 +52,28 @@ words.forEach((el, i) => {
   addWordInList(i);
 });
 
+// Удаление из словаря
+const deleteWord = (e) => {
+  const rowIndex = e.target.closest("tr").rowIndex;
+  e.target.closest("tr").remove();
+  words.splice(rowIndex - 1, 1);
+  localStorage.removeItem("words");
+  localStorage.setItem("words", JSON.stringify(words));
+};
+
+const addEventDelete = () => {
+  if (words.length > 0) {
+    btnDelete = document.querySelectorAll(".btnDelete");
+    for (btn of btnDelete) {
+      btn.addEventListener("click", (e) => {
+        deleteWord(e);
+      });
+    }
+  }
+};
+
+addEventDelete();
+
 // Добавление слов
 function CreateWord(russian, english, voice = null) {
   this.russian = russian;
@@ -75,44 +97,21 @@ saveWord.addEventListener("click", function () {
       warning.classList.remove("open");
       inp.classList.remove("color");
     }
-      words.push(new CreateWord(rusWord.value, engWord.value, voice.value));
-      localStorage.setItem("words", JSON.stringify(words));
-      addWordInList(words.length - 1);
-      rusWord.value = null;
-      engWord.value = null;
-      voice.value = null;
+    words.push(new CreateWord(rusWord.value, engWord.value, voice.value));
+    localStorage.setItem("words", JSON.stringify(words));
+    addWordInList(words.length - 1);
+    rusWord.value = null;
+    engWord.value = null;
+    voice.value = null;
+    addEventDelete();
   }
 });
-
-// Удаление из словаря
-const deleteWord = (e) => {
-  const rowIndex = e.target.closest("tr").rowIndex;
-  e.target.closest("tr").remove();
-  words.splice(rowIndex, 1);
-  localStorage.removeItem("words");
-  localStorage.setItem("words", JSON.stringify(words));
-};
-
-const addEventDelete = () => {
-  if (words.length > 0) {
-    btnDelete = document.querySelectorAll(".btnDelete");
-    for (btn of btnDelete) {
-      btn.addEventListener("click", (e) => {
-        deleteWord(e);
-      });
-    }
-  }
-};
-
-addEventDelete();
 
 // Аккордеон
 function onToggle(event) {
   if (event.target.open) {
     document.querySelectorAll(".accordion > details[open]").forEach((elem) => {
-      if (elem === event.target) {
-        return;
-      }
+      if (elem === event.target) return;
       elem.open = false;
     });
   }
@@ -126,33 +125,29 @@ document
 const question = document.querySelector("#question"),
   popup = document.querySelector("#popup");
 
-window.addEventListener("click", function(e) {
-  if (e.target == question) {
-  popup.classList.add("open");
-  }
-  if (e.target.closest('.closeNotify')) {
-    question.classList.add("hidden");
-  }
+window.addEventListener("click", function (e) {
+  if (e.target == question) popup.classList.add("open");
+  if (e.target.closest(".closeNotify")) question.classList.add("hidden");
 });
+
 popup.addEventListener("click", function (e) {
   e.preventDefault();
-  let info = popup.querySelector("#info"),
-    email = popup.querySelector("#email").value;
+  let info = popup.querySelector("#info");
+  var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  let email = document.querySelector("#email").value;
   if (e.target == popup || e.target.closest(".close")) {
     popup.classList.remove("open");
   }
-  if (e.target.closest(".js-form-send") && email != "") {
-    info.classList.add('visibly');
-    info.textContent = "Вы подписаны на рассылку.";
-  }
-  if (e.target.closest(".js-form-send") && email == "") {
-    info.classList.add('visibly');
-    info.textContent = "Поле e-mail не заполнено или заполнено некорректно.";
+  if (e.target.closest(".js-form-send")) {
+    let email = document.querySelector("#email").value;
+    info.classList.add("visibly");
+    if (email.match(pattern)) {
+      info.textContent = "Вы подписаны на рассылку.";
+    } else
+      info.textContent = "Поле e-mail не заполнено или заполнено некорректно.";
   }
 });
 
 window.addEventListener("keydown", function (e) {
-  if (e.keyCode === 27) {
-    popup.classList.remove("open");
-  }
+  if (e.keyCode === 27) popup.classList.remove("open");
 });
