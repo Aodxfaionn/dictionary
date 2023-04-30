@@ -1,4 +1,4 @@
-<img src="https://i.postimg.cc/Jsh5Y5SG/image.jpg" alt="Демо проекта">
+[![image.jpg](https://i.postimg.cc/QdQYt6bk/image.jpg)](https://postimg.cc/Jsh5Y5SG)
 <p>Мой словарь</p>
 <p>Ссылка на проект: https://aodxfaionn.github.io/dictionary/ </p>
 <p>Функционал: добавление слов с переводом и произношением в личный словарь для удобного изучения языка.</p>
